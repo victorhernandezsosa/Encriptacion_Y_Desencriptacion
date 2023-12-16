@@ -1,6 +1,7 @@
 import json
 
 default_db_file = "excript.txt"
+output_file = "letras_no_encriptadas.txt"
 
 
 def cargar_datos():
@@ -14,6 +15,7 @@ def cargar_datos():
 
 def encriptar(palabra, arreglo_file):
     excripted_words = ""
+    letras_no_encriptadas = ""
     posArr = {}
 
     for char in palabra:
@@ -25,9 +27,15 @@ def encriptar(palabra, arreglo_file):
                 excripted_words += str(ii[1])
                 break
 
-        if remplazado:
-            reverse = excripted_words[::-1]
-            posArr[len(excripted_words) - 1] = reverse[0]
+        if not remplazado:
+            letras_no_encriptadas += char
+
+    with open(output_file, 'w') as file:
+        file.write(letras_no_encriptadas)
+
+    reverse = excripted_words[::-1]
+    for i in range(len(excripted_words)):
+        posArr[len(excripted_words) - 1 - i] = reverse[i]
 
     return excripted_words, posArr
 

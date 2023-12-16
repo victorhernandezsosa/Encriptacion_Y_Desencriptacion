@@ -57,6 +57,9 @@ encrypted_word, posArr = encriptar(word, arreglo_file)
 
 print("Su frase encriptada es: " + str(encrypted_word))
 print("Cantidad de caracteres leídos: " + str(len(encrypted_word)))
+print("Valor remplazado : ")
+pretty = json.dumps(posArr, indent=4)
+print(pretty)
 
 decrypted_word = desencriptar(encrypted_word, arreglo_file, posArr)
 print("Su frase desencriptada es: " + decrypted_word)
